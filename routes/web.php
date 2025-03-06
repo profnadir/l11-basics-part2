@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,7 +29,14 @@ Route::get('/greeting',function(){
 });
 
 Route::get('/users',function(){
-    return view("users.index");
+
+    $groupe = "<script>alert('hacked')</script>";
+
+    $users = User::all();
+
+    Session::flash("status","user created");
+
+    return view("users.index", compact("users","groupe"));
 });
 
 require __DIR__.'/auth.php';
