@@ -17,4 +17,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/greeting',function(){
+    $groupe = "dev202";
+    $module = "m205";
+    $prof = "nadir";
+   
+    //return view("greeting",["groupe"=>$groupe,"module" => $module, "prof" => $prof]);
+    return view("greeting",compact("groupe","module","prof"));
+});
+
+Route::get('/users',function(){
+    return view("users.index");
+});
+
 require __DIR__.'/auth.php';
